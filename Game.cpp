@@ -107,47 +107,48 @@ void Game::move(Type critter) {
         for (int c = 0; c < cols; c++) {
             dead = false;
 
-            if (grid[r][c] != NULL) {
-                if (grid[r][c]->getType() == critter) {                                     //check critter type here
+            if (grid[r][c] == NULL) continue;
 
-                    thisCritter = grid[r][c];
+            if (grid[r][c]->getType() == critter) {                                     //check critter type here
 
-                    if (!thisCritter->getMoved()) {                                         //check if already moved
-                        getAdjacent(r, c);
+                thisCritter = grid[r][c];
 
-                        if (thisCritter->move(adjacent)) {                                  //move critter
-                            newRow = thisCritter->getRow();
-                            newCol = thisCritter->getCol();
+                if (!thisCritter->getMoved()) {                                         //check if already moved
+                    getAdjacent(r, c);
 
-                            if (grid[r][c]->getType() == BUG && grid[r][c]->eatAnt()) {;    //for bugs only, check if ate ant
-                                delete grid[newRow][newCol];
-                            }
-                            grid[newRow][newCol] = thisCritter;
-                            grid[r][c] = NULL;
-                        }
-                    }
-
-                    if (thisCritter->getType() == BUG && thisCritter->starved()) {          //for bugs only, check if starved
+                    if (thisCritter->move(adjacent)) {                                  //move critter
                         newRow = thisCritter->getRow();
                         newCol = thisCritter->getCol();
-                        thisCritter = NULL;
-                        delete grid[newRow][newCol];
-                        grid[newRow][newCol] = NULL;
-                        dead = true;
-                    }
 
-                    if (dead == false && thisCritter->getBreedReady()) {                    //check if ready to breed
-                        getAdjacent(thisCritter->getRow(), thisCritter->getCol());
-
-                        if (thisCritter->canBreed(adjacent)) {
-                            newCritter = thisCritter->breed();
-                            newRow = newCritter->getRow();
-                            newCol = newCritter->getCol();
-                            grid[newRow][newCol] = newCritter;
+                        if (grid[r][c]->getType() == BUG && grid[r][c]->eatAnt()) {;    //for bugs only, check if ate ant
+                            delete grid[newRow][newCol];
                         }
+                        grid[newRow][newCol] = thisCritter;
+                        grid[r][c] = NULL;
+                    }
+                }
+
+                if (thisCritter->getType() == BUG && thisCritter->starved()) {          //for bugs only, check if starved
+                    newRow = thisCritter->getRow();
+                    newCol = thisCritter->getCol();
+                    thisCritter = NULL;
+                    delete grid[newRow][newCol];
+                    grid[newRow][newCol] = NULL;
+                    dead = true;
+                }
+
+                if (dead == false && thisCritter->getBreedReady()) {                    //check if ready to breed
+                    getAdjacent(thisCritter->getRow(), thisCritter->getCol());
+
+                    if (thisCritter->canBreed(adjacent)) {
+                        newCritter = thisCritter->breed();
+                        newRow = newCritter->getRow();
+                        newCol = newCritter->getCol();
+                        grid[newRow][newCol] = newCritter;
                     }
                 }
             }
+
         }
     }
 }
