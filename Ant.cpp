@@ -19,20 +19,20 @@ bool Ant::move(int *adjacent) {
     if(adjacent[dir] == SPACE) {
         switch (dir) {
             case NORTH: {
-                    row -= 1;
-                    break;
+                        row--;
+                        break;
             }
             case EAST: {
-                     col += 1;
-                     break;
+                         col++;
+                         break;
             }
             case SOUTH: {
-                    row += 1;
-                    break;
+                        row++;
+                        break;
             }
              case WEST: {
-                    col -= 1;
-                    break;
+                        col--;
+                        break;
              }
         }
 

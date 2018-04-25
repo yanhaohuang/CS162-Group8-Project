@@ -34,19 +34,19 @@ bool Doodlebug::move(int *adjacent) {
         }
             switch(dir) {
                 case NORTH: {
-                            row -= 1;
+                            row--;
                             break;
                 }
                 case EAST: {
-                             col += 1;
+                             col++;
                              break;
                 }
                 case SOUTH: {
-                            row += 1;
+                            row++;
                             break;
                 }
                  case WEST: {
-                            col -= 1;
+                            col--;
                             break;
                 }
             }
@@ -57,19 +57,19 @@ bool Doodlebug::move(int *adjacent) {
 
             switch (dir) {
                 case NORTH: {
-                            row -= 1;
+                            row--;
                             break;
                 }
                 case EAST: {
-                            col += 1;
+                            col++;
                             break;
                 }
                 case SOUTH: {
-                            row += 1;
+                            row++;
                             break;
                 }
                  case WEST: {
-                            col -= 1;
+                            col--;
                             break;
                  }
             }

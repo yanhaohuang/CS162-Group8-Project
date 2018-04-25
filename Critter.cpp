@@ -68,7 +68,7 @@ bool Critter::canBreed(int *adjacent) {
     for (int i = 0; i < 4; i++) {                   //go through the random sequence
         switch (randSeq[i]) {
             case NORTH: {
-                        if (adjacent[0] == 0) {
+                        if (adjacent[0] == SPACE) {
                             childRow = row - 1;
                             childCol = col;
                             return true;
@@ -76,7 +76,7 @@ bool Critter::canBreed(int *adjacent) {
                         break;
             }
             case EAST: {
-                        if (adjacent[1] == 0) {
+                        if (adjacent[1] == SPACE) {
                             childRow = row;
                             childCol = col + 1;
                             return true;
@@ -84,7 +84,7 @@ bool Critter::canBreed(int *adjacent) {
                         break;
             }
             case SOUTH: {
-                        if (adjacent[2] == 0) {
+                        if (adjacent[2] == SPACE) {
                             childRow = row + 1;
                             childCol = col;
                             return true;
@@ -92,7 +92,7 @@ bool Critter::canBreed(int *adjacent) {
                         break;
             }
             case WEST: {
-                        if (adjacent[3] == 0) {
+                        if (adjacent[3] == SPACE) {
                             childRow = row;
                             childCol = col - 1;
                             return true;
