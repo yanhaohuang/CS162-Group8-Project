@@ -7,13 +7,20 @@
 
 #include "Game.hpp"
 
+/*
+ * menu starts the program or exits the program depending on what the user picks
+ * and plays the Predator-Prey Game
+ */
 void Game::menu() {
     int input;
 
     do {
-        cout << "   Predator-Prey Game Menu" << endl
-                << "1) Start Predator-Prey Game" << endl
-                << "2) Quit" << endl
+        cout << "                Group 8: Predator-Prey Game Menu             " << endl
+                << "__________________________________________________________" << endl
+                << "                   DoodleBugs and Ants                    " << endl
+                << "           1) Start Predator-Prey Game                    " << endl
+                << "               2) Quit                                    " << endl
+                << "                                                          "<< endl
                 << "Enter your choice: " ;
         input = validate(1, 2);
 
@@ -29,6 +36,10 @@ void Game::menu() {
     } while (input != 2);
 }
 
+/*
+ * play function initializes the game and starts the Predator and Prey simulation. If the game is
+ * over and the user selects 2 then the game ends, otherwise the simulation will continue
+ */
 void Game::play() {
     initialize();
     int input;
@@ -58,6 +69,9 @@ void Game::play() {
     cout << "Game Over" << endl << endl;
 }
 
+/*
+ * initialize will initialize the columns, rows and numAnts and numBugs
+ */
 void Game::initialize() {
     cols = 20;
     rows = 20;
@@ -96,6 +110,56 @@ void Game::initialize() {
     printGrid();
 }
 
+/*
+ * initializeEC is initializing the game if the user selects our extra credit option of
+ * manually entering in columns, rows, ants, and doodlebugs
+ */
+void Game::initializeEC()
+{
+    cout << "Choose Columns from min 3 to max 100" << endl;
+    cols = validate(3, 100);
+    cout << "Choose Rows from min 3 to max 100" << endl;
+    rows = validate(3, 100);
+    cout << "Choose number of ants from 1 to 500" << endl;
+    numAnts = validate(1, 500);
+    cout << "Choose number of doodlebugs from 1 to 50" << endl;
+    numBugs = validate(1,50);
+
+    grid = new Critter**[rows];
+
+    for (int r = 0; r < rows; r++) {
+        grid[r] = new Critter*[cols];
+
+        for (int c = 0; c < cols; c++) {
+            grid[r][c] = NULL;
+        }
+    }
+
+    int randRow;
+    int randCol;
+
+    for (int i = 0; i < numAnts; i++) {
+        do {
+            randRow = rand() % rows;
+            randCol = rand() % cols;
+        } while (grid[randRow][randCol] != NULL);
+        grid[randRow][randCol] = new Ant(randRow, randCol);
+    }
+
+    for (int j = 0; j < numBugs; j++) {
+        do {
+            randRow = rand() % rows;
+            randCol = rand() % cols;
+        } while (grid[randRow][randCol] != NULL);
+        grid[randRow][randCol] = new Doodlebug(randRow, randCol);
+    }
+
+    printGrid();
+}
+
+/*
+ * move takes a parameter critter and moves that critter through the board
+ */
 void Game::move(Type critter) {
     int newRow;
     int newCol;

@@ -25,6 +25,7 @@ class Game {
         void menu();
         void play();
         void initialize();
+        void initializeEC();
         void move(Type);
         void resetMove();
         void printGrid();
