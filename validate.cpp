@@ -7,6 +7,10 @@
 //test
 #include "validate.hpp"
 
+/*
+ * validate takes an integer for min and a max as parameters and validates if
+ * the user input is integer only within the specified min and max
+ */
 int validate(int min, int max) {            //function validates the users input, limits input to integer only and a specified max/min value
     int intChoice;
     cin >> intChoice;
