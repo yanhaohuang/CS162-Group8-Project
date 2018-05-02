@@ -4,7 +4,7 @@
 ** Date: 5-XX-2018
 ** Description: Function definitions for validate header
 *********************************************************************/
-
+//test
 #include "validate.hpp"
 
 int validate(int min, int max) {            //function validates the users input, limits input to integer only and a specified max/min value

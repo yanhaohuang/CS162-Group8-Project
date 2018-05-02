@@ -217,6 +217,9 @@ void Game::move(Type critter) {
     }
 }
 
+/*
+ * resetMove resets the move of the grid
+ */
 void Game::resetMove() {                                                                    //reset all moves
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
@@ -227,6 +230,9 @@ void Game::resetMove() {                                                        
     }
 }
 
+/*
+ * printGrid prints the Grid of critters
+ */
 void Game::printGrid() {
     for(int i = 0; i < cols * 4 + 1; i++) {
         cout <<"_";
@@ -259,7 +265,9 @@ void Game::printGrid() {
     cout << endl << endl << endl;
 }
 
-
+/*
+ * getAdjacent has two parameters, a row and a col, and gets the adjacent cells
+ */
 void Game::getAdjacent(int row, int col) {                          //get adjacent 4 cells
     for (int i = 0; i < 4; i++) {
         adjacent[i] = -1;                                           //-1 is for off grid
@@ -308,6 +316,10 @@ void Game::getAdjacent(int row, int col) {                          //get adjace
     }
 }
 
+/*
+ * Game destructor which destroys the grid items of the pointer
+ * to a pointer to a pointer
+ */
 Game::~Game() {                                     //destructor, deallocate all memory
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
