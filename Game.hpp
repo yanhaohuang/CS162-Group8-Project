@@ -22,6 +22,7 @@ class Game {
         Critter ***grid;
 
     public:
+        Game();
         void menu();
         void play();
         void initialize();

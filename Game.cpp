@@ -7,6 +7,10 @@
 
 #include "Game.hpp"
 
+Game::Game() {                                      //constructor
+    grid = NULL;
+}
+
 /*
  * menu starts the program or exits the program depending on what the user picks
  * and plays the Predator-Prey Game
@@ -321,13 +325,15 @@ void Game::getAdjacent(int row, int col) {                          //get adjace
  * to a pointer to a pointer
  */
 Game::~Game() {                                     //destructor, deallocate all memory
-    for (int r = 0; r < rows; r++) {
-        for (int c = 0; c < cols; c++) {
-            if (grid[r][c] != NULL) {
-                delete grid[r][c];
+    if (grid != NULL) {
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (grid[r][c] != NULL) {
+                    delete grid[r][c];
+                }
             }
+            delete [] grid[r];
         }
-        delete [] grid[r];
+        delete [] grid;
     }
-    delete [] grid;
 }
