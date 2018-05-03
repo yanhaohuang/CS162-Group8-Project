@@ -19,11 +19,13 @@ void Game::menu() {
     int input;
 
     do {
-        cout << "                Group 8: Predator-Prey Game Menu             " << endl
+        cout    << "                                                          "<< endl
+                << "             Group 8: Predator-Prey Game Menu             " << endl
                 << "__________________________________________________________" << endl
                 << "                   DoodleBugs and Ants                    " << endl
+                << "                                                          "<< endl
                 << "           1) Start Predator-Prey Game                    " << endl
-                << "               2) Quit                                    " << endl
+                << "           2) Quit                                        " << endl
                 << "                                                          "<< endl
                 << "Enter your choice: " ;
         input = validate(1, 2);
