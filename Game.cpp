@@ -24,6 +24,7 @@ void Game::menu() {
                 << "__________________________________________________________" << endl
                 << "                   DoodleBugs and Ants                    " << endl
                 << "                                                          "<< endl
+		<< "**EC: User can select size of grid and number of ants and bugs.**" << endl
                 << "           1) Start Predator-Prey Game                    " << endl
                 << "           2) Quit                                        " << endl
                 << "                                                          "<< endl
@@ -47,7 +48,8 @@ void Game::menu() {
  * over and the user selects 2 then the game ends, otherwise the simulation will continue
  */
 void Game::play() {
-    initialize();
+    //initialize();
+    initializeEC();
     int input;
 
     do {
@@ -122,14 +124,32 @@ void Game::initialize() {
  */
 void Game::initializeEC()
 {
+    int antsLim = 0;
+    int bugsLim = 0;
     cout << "Choose Columns from min 3 to max 100" << endl;
     cols = validate(3, 100);
     cout << "Choose Rows from min 3 to max 100" << endl;
     rows = validate(3, 100);
-    cout << "Choose number of ants from 1 to 500" << endl;
-    numAnts = validate(1, 500);
-    cout << "Choose number of doodlebugs from 1 to 50" << endl;
-    numBugs = validate(1,50);
+    antsLim = (cols * rows) - 1;
+    if (antsLim>500)
+	antsLim = 500;
+    cout << "Choose number of ants from 1 to " << antsLim << endl;
+    numAnts = validate(1, antsLim);
+    bugsLim = (cols * rows) - numAnts;
+    if (bugsLim>50)
+	bugsLim = 50;
+    if (bugsLim==1)
+    {
+	numBugs = 1;
+	cout << "Starting the game with 1 doodlebug" << endl;
+	cout << "Enter any key to continue...." << endl;
+	system("read");
+    }
+    else
+    {
+    cout << "Choose number of doodlebugs from 1 to "<< bugsLim << endl;
+    numBugs = validate(1,bugsLim);
+    }
 
     grid = new Critter**[rows];
 
