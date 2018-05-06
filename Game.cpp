@@ -48,8 +48,15 @@ void Game::menu() {
  * over and the user selects 2 then the game ends, otherwise the simulation will continue
  */
 void Game::play() {
-    //initialize();
-    initializeEC();
+    cout << "Would you like to do the extra credit option? (Y/N) " << endl;
+    if (YesOrNoInput())
+    {
+        initializeEC();
+    }
+    else
+    {
+        initialize();
+    }
     int input;
 
     do {

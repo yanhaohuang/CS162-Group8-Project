@@ -13,8 +13,11 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
+
 using namespace std;
 
 int validate(int, int);
+bool YesOrNoInput();
 
 #endif
