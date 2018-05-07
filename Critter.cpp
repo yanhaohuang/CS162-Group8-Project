@@ -52,7 +52,7 @@ bool Critter::getMoved() {
  * incrementBreedAge increments breeding age by one and if
  * the age to breed is equal to the breeding age then the
  * breed Ready becomes true. This is true for if the breeding
- * age is greater than breed ready age
+ * age is equal to the breed ready age
  */
 void Critter::incrementBreedAge() {
     breedAge += 1;
