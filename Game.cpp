@@ -16,9 +16,20 @@ Game::Game() {                                      //constructor
  * and plays the Predator-Prey Game
  */
 void Game::menu() {
-    int input;
-
     do {
+        if (grid != NULL) {                         //deallocate all memory before starting another game
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    if (grid[r][c] != NULL) {
+                        delete grid[r][c];
+                    }
+                }
+                delete [] grid[r];
+            }
+            delete [] grid;
+        }
+
+        int input;
         cout    << "                                                          "<< endl
                 << "             Group 8: Predator-Prey Game Menu             " << endl
                 << "__________________________________________________________" << endl
@@ -349,20 +360,4 @@ void Game::getAdjacent(int row, int col) {                          //get adjace
     }
 }
 
-/*
- * Game destructor which destroys the grid items of the pointer
- * to a pointer to a pointer
- */
-Game::~Game() {                                     //destructor, deallocate all memory
-    if (grid != NULL) {
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                if (grid[r][c] != NULL) {
-                    delete grid[r][c];
-                }
-            }
-            delete [] grid[r];
-        }
-        delete [] grid;
-    }
-}
+Game::~Game() {}
