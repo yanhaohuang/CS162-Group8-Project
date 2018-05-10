@@ -16,6 +16,8 @@ Game::Game() {                                      //constructor
  * and plays the Predator-Prey Game
  */
 void Game::menu() {
+    int input;
+
     do {
         if (grid != NULL) {                         //deallocate all memory before starting another game
             for (int r = 0; r < rows; r++) {
@@ -29,7 +31,6 @@ void Game::menu() {
             delete [] grid;
         }
 
-        int input;
         cout    << "                                                          "<< endl
                 << "             Group 8: Predator-Prey Game Menu             " << endl
                 << "__________________________________________________________" << endl
